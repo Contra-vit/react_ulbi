@@ -13,6 +13,6 @@ export default function PostItem(props) {
           <button>Delete</button>
         </div>
       </div>
-  )
+  )  
 }
 
