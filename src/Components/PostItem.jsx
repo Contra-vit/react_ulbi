@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function PostItem(props) {
   return (            
-    console.log(props),
+    // console.log(props),
     <div className='post'>
 
         <div className='post__content'>

@@ -4,8 +4,8 @@ import   './Counter.css';
 const Counter= () => {
     const [count, setCount] = useState(0);
     const [value, setValue] = useState('input text');
-console.log(setValue)
-console.log(setCount)
+// console.log(setValue)
+// console.log(setCount)
 
     function increment() {
         setCount(count + 1)
