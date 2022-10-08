@@ -14,24 +14,28 @@ function App() {
     { id: 3, title: 'JavaScript3', body: 'Description' },
   ])
 
-  const bodyInputRef = useRef();
-  const [title, setTitle] = useState('')
-  const [body, setBody] = useState('')
+  // const bodyInputRef = useRef();
+  // const [title, setTitle] = useState('')
+  // const [body, setBody] = useState('')
+  const [post, setPost] = useState({ title:'', body:''})
+
 
   const addNewPost = (e) => {
     e.preventDefault()
     // console.log({ title })
     // console.log(bodyInputRef.current.value)
-    const newPost = {
-      id: Date.now(),
-      title,
-      body
-
-    }
+    // const newPost = {
+    //   id: Date.now(),
+    //   title,
+    //   body
+    // }
     // console.log(newPost)
-    setPosts([...posts, newPost])
-    setTitle('')
-    setBody('')
+  //   setPosts([...posts, newPost])
+  //   setTitle('')
+  //   setBody('')
+      setPosts([...posts,  {...post, id:Date.now()}])
+
+  setPost({title:'', body:''})
   }
 
 
@@ -39,11 +43,11 @@ function App() {
 
     <div className="App">
       <form>
-        <MyInput
+        {/* <MyInput
           value={title}
           onChange = {e => setTitle(e.target.value)}
           type="text"
-          placeholder='name of posts' />
+          placeholder='name of posts' /> */}
 
         {/* <input
           ref={bodyInputRef}
@@ -55,12 +59,24 @@ function App() {
           type="text"
           placeholder='descriptions of posts' 
           /> */}
-        <MyInput
+        {/* <MyInput
           value={body}
           onChange = {e => setBody(e.target.value)}
           type="text"
           placeholder='descriptions of posts'
-        />
+        /> */}
+
+        <MyInput
+          value={post.title}
+          onChange={e => setPost({...post, title: e.target.value})}
+          type="text"
+          placeholder='name of posts' />
+        <MyInput
+          value={post.body}
+          onChange={e => setPost({...post, body: e.target.value})}
+          type="text"
+          placeholder='name of posts' />
+
         <MyButton onClick={addNewPost}  >Create post</MyButton>;
       </form>
       <PostList posts={posts} title={'List of JavaScript'} />  {/* закидываем массив posts through props to PostList Component */}
