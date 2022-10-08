@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { useState,useRef  } from 'react';
+import { useState, useRef } from 'react';
 import Counter from './Components/Counter';
 import ClassCounter from './Components/ClassCounter';
 import './stylies/App.css';
@@ -8,19 +8,30 @@ import MyButton from './Components/ui/button/MyButton';
 import MyInput from './Components/ui/input/MyInput';
 
 function App() {
-  const [posts, setPost] = useState([
+  const [posts, setPosts] = useState([
     { id: 1, title: 'JavaScript1', body: 'Description' },
     { id: 2, title: 'JavaScript2', body: 'Description' },
     { id: 3, title: 'JavaScript3', body: 'Description' },
   ])
 
   const bodyInputRef = useRef();
-  const [title, setTitle] = useState('ku-ku-Ki-Ki')
+  const [title, setTitle] = useState('')
+  const [body, setBody] = useState('')
+
   const addNewPost = (e) => {
     e.preventDefault()
     // console.log({ title })
-        console.log(bodyInputRef.current.value)
+    // console.log(bodyInputRef.current.value)
+    const newPost = {
+      id: Date.now(),
+      title,
+      body
 
+    }
+    // console.log(newPost)
+    setPosts([...posts, newPost])
+    setTitle('')
+    setBody('')
   }
 
 
@@ -30,19 +41,26 @@ function App() {
       <form>
         <MyInput
           value={title}
-          onChange={e => setTitle(e.target.value)}
+          onChange = {e => setTitle(e.target.value)}
           type="text"
           placeholder='name of posts' />
-          
-          <input
+
+        {/* <input
           ref={bodyInputRef}
           type="text" 
-          />
-          
-        <MyInput
-          // ref={bodyInputRef}
+          /> */}
+
+        {/* <MyInput
+          ref={bodyInputRef}
           type="text"
-          placeholder='descriptions of posts' />
+          placeholder='descriptions of posts' 
+          /> */}
+        <MyInput
+          value={body}
+          onChange = {e => setBody(e.target.value)}
+          type="text"
+          placeholder='descriptions of posts'
+        />
         <MyButton onClick={addNewPost}  >Create post</MyButton>;
       </form>
       <PostList posts={posts} title={'List of JavaScript'} />  {/* закидываем массив posts through props to PostList Component */}
